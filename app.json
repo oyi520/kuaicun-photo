@@ -1,0 +1,26 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/size/size",
+    "pages/crop/crop",
+    "pages/background/background",
+    "pages/compress/compress",
+    "pages/result/result"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#125E70",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "快寸照片",
+    "backgroundColor": "#E7F3F4",
+    "backgroundTextStyle": "dark",
+    "backgroundColorTop": "#104861",
+    "backgroundColorBottom": "#E7F3F4"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "__usePrivacyCheck__": true,
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {
+    "privacy-popup": "/components/privacy-popup/privacy-popup"
+  }
+}

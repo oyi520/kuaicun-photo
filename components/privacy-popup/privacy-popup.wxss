@@ -1,0 +1,75 @@
+/* 组件 WXSS 不能用标签选择器，改用按钮上已有的 class */
+.contract::after,
+.choice::after {
+  border: none;
+}
+
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(8, 28, 34, 0.48);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.panel {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 32rpx 32rpx 0 0;
+  padding: 40rpx 36rpx calc(36rpx + env(safe-area-inset-bottom));
+}
+
+.title {
+  font-size: 38rpx;
+  font-weight: 700;
+  color: #14343c;
+}
+
+.body {
+  margin-top: 16rpx;
+  color: #3e5960;
+  font-size: 30rpx;
+  line-height: 1.55;
+}
+
+.contract {
+  margin-top: 20rpx;
+  padding: 0;
+  height: auto;
+  text-align: left;
+  color: #0f7384;
+  font-size: 28rpx;
+  background: transparent;
+}
+
+.actions {
+  display: flex;
+  margin-top: 36rpx;
+}
+
+.choice {
+  flex: 1;
+  height: 92rpx;
+  border-radius: 18rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ghost {
+  margin-right: 16rpx;
+  background: #eef5f6;
+  color: #14343c;
+}
+
+.ok {
+  background: #0f7384;
+  color: #ffffff;
+}

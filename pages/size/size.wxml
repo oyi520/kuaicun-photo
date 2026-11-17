@@ -1,0 +1,46 @@
+<view class="page">
+  <view class="lead">先选一个尺寸，再拍照或从相册选。导出就是这个像素，不会上传。</view>
+
+  <view class="list">
+    <view
+      wx:for="{{presets}}"
+      wx:key="id"
+      class="row {{!usingCustom && selectedId === item.id ? 'on' : ''}}"
+      data-id="{{item.id}}"
+      bindtap="onSelect"
+      hover-class="row-hover"
+    >
+      <view class="row-main">
+        <view class="row-name">{{item.name}}</view>
+        <view class="row-hint">{{item.width}} × {{item.height}} 像素 · {{item.hint}}</view>
+      </view>
+      <view class="mark">{{!usingCustom && selectedId === item.id ? '已选' : ''}}</view>
+    </view>
+  </view>
+
+  <view class="panel custom">
+    <view class="custom-title">自定义像素</view>
+    <view class="custom-hint">报名系统如果给了特殊宽高，填在这里。范围 80 到 2000。</view>
+    <view class="custom-fields">
+      <view class="field-wrap">
+        <view class="field-label">宽</view>
+        <input class="field" type="number" placeholder="295" value="{{customW}}" bindinput="onCustomW" />
+      </view>
+      <view class="times">×</view>
+      <view class="field-wrap">
+        <view class="field-label">高</view>
+        <input class="field" type="number" placeholder="413" value="{{customH}}" bindinput="onCustomH" />
+      </view>
+    </view>
+    <view wx:if="{{customError}}" class="warn">{{customError}}</view>
+  </view>
+
+  <view class="will">将导出 {{willText}}</view>
+  <view wx:if="{{reuse}}" class="note">{{reuseNote}}</view>
+
+  <button wx:if="{{reuse}}" class="btn btn-primary" hover-class="btn-hover" bindtap="onUseCurrent">用当前照片</button>
+  <button class="btn {{reuse ? 'btn-ghost' : 'btn-primary'}}" hover-class="btn-hover" bindtap="onCamera">拍照</button>
+  <button class="btn btn-ghost" hover-class="btn-hover" bindtap="onAlbum">从相册选择</button>
+  <view class="privacy">照片仅在本机处理，不上传。拍照请用后置摄像头，让别人帮你拍。</view>
+  <privacy-popup />
+</view>

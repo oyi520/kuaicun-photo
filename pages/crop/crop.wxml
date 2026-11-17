@@ -1,0 +1,56 @@
+<view class="crop-page" wx:if="{{!missing}}">
+  <view class="tip">
+    <view class="tip-size">{{sizeName}} · {{targetW}} × {{targetH}} 像素</view>
+    <view class="tip-help">拖动照片，双指缩放。脸放在椭圆里，头顶留一点空白。</view>
+    <view wx:if="{{tooSmall}}" class="warn tight">原图比目标尺寸小，导出会被放大，可能发糊。</view>
+  </view>
+
+  <view class="stage">
+    <image
+      wx:if="{{ready}}"
+      class="photo"
+      src="{{src}}"
+      mode="scaleToFill"
+      style="width: {{dispW}}px; height: {{dispH}}px; left: {{tx}}px; top: {{ty}}px;"
+    />
+    <block wx:if="{{ready}}">
+      <view class="dim" style="left: 0; top: 0; right: 0; height: {{frameY}}px;"></view>
+      <view class="dim" style="left: 0; top: {{frameY + frameH}}px; right: 0; bottom: 0;"></view>
+      <view class="dim" style="left: 0; top: {{frameY}}px; width: {{frameX}}px; height: {{frameH}}px;"></view>
+      <view class="dim" style="left: {{frameX + frameW}}px; top: {{frameY}}px; right: 0; height: {{frameH}}px;"></view>
+      <view class="frame" style="left: {{frameX}}px; top: {{frameY}}px; width: {{frameW}}px; height: {{frameH}}px;">
+        <view class="oval"></view>
+        <view class="shoulder"></view>
+      </view>
+    </block>
+    <view wx:if="{{!ready}}" class="stage-wait">正在准备照片…</view>
+    <view
+      class="gesture"
+      catchtouchstart="onTouchStart"
+      catchtouchmove="onTouchMove"
+      catchtouchend="onTouchEnd"
+      catchtouchcancel="onTouchEnd"
+    ></view>
+  </view>
+
+  <view class="dock">
+    <view class="dock-row">
+      <button class="mini" hover-class="btn-hover" bindtap="onCamera" disabled="{{exporting}}">重拍</button>
+      <button class="mini" hover-class="btn-hover" bindtap="onAlbum" disabled="{{exporting}}">相册</button>
+    </view>
+    <view class="dock-row">
+      <button class="btn btn-ghost half" hover-class="btn-hover" bindtap="onExportBg" disabled="{{exporting || !ready}}">先换底色</button>
+      <button class="btn btn-primary half" hover-class="btn-hover" bindtap="onExport" disabled="{{exporting || !ready}}">导出此尺寸</button>
+    </view>
+  </view>
+  <canvas type="2d" id="workCanvas" class="work-canvas"></canvas>
+  <privacy-popup />
+</view>
+
+<view class="page" wx:else>
+  <view class="panel">
+    <view class="h1">还没有照片</view>
+    <view class="sub">先回到首页，选好尺寸再选一张照片。</view>
+    <button class="btn btn-primary" hover-class="btn-hover" bindtap="goHome">回到首页</button>
+  </view>
+</view>

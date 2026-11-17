@@ -1,0 +1,101 @@
+<view class="page">
+  <privacy-popup />
+
+  <view wx:if="{{!hasImage}}">
+    <view class="h1">换成蓝、白或红</view>
+    <view class="sub">选一张人物照片。手机会在本地把背景分开，再铺上新颜色。抠不干净时，可以用手指涂一下。</view>
+    <button class="btn btn-primary" hover-class="btn-hover" bindtap="onCamera">拍照</button>
+    <button class="btn btn-ghost" hover-class="btn-hover" bindtap="onAlbum">从相册选择</button>
+    <view wx:if="{{error}}" class="warn">{{error}}</view>
+    <view class="privacy">照片仅在本机处理，不上传。</view>
+  </view>
+
+  <block wx:else>
+    <view class="stage-wrap">
+      <canvas
+        type="2d"
+        id="preview"
+        class="preview-canvas"
+        style="width: {{viewW}}px; height: {{viewH}}px;"
+        catchtouchstart="onBrushStart"
+        catchtouchmove="onBrushMove"
+        catchtouchend="onBrushEnd"
+        catchtouchcancel="onBrushEnd"
+      ></canvas>
+      <view wx:if="{{busy}}" class="stage-mask">
+        <view class="stage-title">{{busyText}}</view>
+        <view class="stage-sub">照片仅在本机处理，不上传。</view>
+      </view>
+    </view>
+
+    <view wx:if="{{message && !busy}}" class="note">{{message}}</view>
+
+    <view class="color-label">底色</view>
+    <view class="swatches">
+      <view
+        wx:for="{{colors}}"
+        wx:key="id"
+        class="swatch {{colorId === item.id ? 'on' : ''}} {{item.id}}"
+        data-id="{{item.id}}"
+        bindtap="onPreset"
+      >
+        <view class="swatch-dot" style="background: {{item.hex}};"></view>
+        <view class="swatch-name">{{item.name}}</view>
+      </view>
+      <view class="swatch {{colorId === 'custom' ? 'on' : ''}}" bindtap="onToggleCustom">
+        <view class="swatch-dot custom-dot" style="background: {{colorHex}};"></view>
+        <view class="swatch-name">自定义</view>
+      </view>
+    </view>
+
+    <view wx:if="{{customOpen}}" class="panel picker">
+      <view class="picker-line">色相</view>
+      <view
+        id="hueBar"
+        class="hue"
+        bindtouchstart="onHueStart"
+        bindtouchmove="onHueMove"
+      >
+        <view class="thumb" style="left: {{hueLeft}}%;"></view>
+      </view>
+      <view class="picker-line">明暗</view>
+      <view
+        id="lightBar"
+        class="light"
+        bindtouchstart="onLightStart"
+        bindtouchmove="onLightMove"
+      >
+        <view class="thumb dark" style="left: {{lightLeft}}%;"></view>
+      </view>
+      <view class="hex-row">
+        <input class="field hex" placeholder="#438EDB" value="{{hexInput}}" bindinput="onHexInput" bindblur="onHexBlur" />
+        <button class="hex-btn" hover-class="btn-hover" bindtap="onHexApply">使用</button>
+      </view>
+      <view class="now">当前 {{colorHex}}</view>
+    </view>
+
+    <button class="btn btn-ghost" hover-class="btn-hover" bindtap="onToggleBrush" disabled="{{busy}}">
+      {{brushOpen ? '收起修补' : '修补边缘'}}
+    </button>
+
+    <view wx:if="{{brushOpen}}" class="panel brush">
+      <view class="brush-help">在照片上涂抹。人被抠掉了就选「这是人像」，底色没去掉就选「这是背景」。</view>
+      <view class="modes">
+        <button class="mode {{brushMode === 'person' ? 'on' : ''}}" data-mode="person" bindtap="onMode">这是人像</button>
+        <button class="mode {{brushMode === 'background' ? 'on' : ''}}" data-mode="background" bindtap="onMode">这是背景</button>
+      </view>
+      <view class="modes">
+        <button class="mode {{brushSize === 's' ? 'on' : ''}}" data-size="s" bindtap="onSize">小</button>
+        <button class="mode {{brushSize === 'm' ? 'on' : ''}}" data-size="m" bindtap="onSize">中</button>
+        <button class="mode {{brushSize === 'l' ? 'on' : ''}}" data-size="l" bindtap="onSize">大</button>
+      </view>
+      <button class="btn btn-text" bindtap="onResetMask">恢复自动抠图</button>
+    </view>
+
+    <button class="btn btn-primary" hover-class="btn-hover" bindtap="onDone" disabled="{{busy || exporting}}">完成并预览</button>
+    <view class="dock-row">
+      <button class="btn btn-text" bindtap="onCamera">重拍</button>
+      <button class="btn btn-text" bindtap="onAlbum">相册换一张</button>
+    </view>
+  </block>
+</view>

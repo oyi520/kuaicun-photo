@@ -1,0 +1,41 @@
+<view class="home">
+  <view class="hero">
+    <image class="logo" src="/images/logo.png" mode="aspectFill" />
+    <view class="hero-copy">
+      <view class="hero-title">快寸照片</view>
+      <view class="hero-sub">证件照尺寸、换底色、压到指定大小，都在这台手机里完成。</view>
+    </view>
+  </view>
+
+  <view class="sheet">
+    <view class="entry" hover-class="entry-hover" bindtap="goSize">
+      <view class="dot blue"></view>
+      <view class="entry-copy">
+        <view class="entry-name">证件照尺寸</view>
+        <view class="entry-desc">一寸、二寸、护照等，按标准像素导出</view>
+      </view>
+      <view class="chev">›</view>
+    </view>
+
+    <view class="entry" hover-class="entry-hover" bindtap="goBackground">
+      <view class="dot white"></view>
+      <view class="entry-copy">
+        <view class="entry-name">换底色</view>
+        <view class="entry-desc">蓝、白、红，或自己选一个颜色</view>
+      </view>
+      <view class="chev">›</view>
+    </view>
+
+    <view class="entry" hover-class="entry-hover" bindtap="goCompress">
+      <view class="dot red"></view>
+      <view class="entry-copy">
+        <view class="entry-name">压缩图片</view>
+        <view class="entry-desc">压到 20KB、50KB 等指定大小</view>
+      </view>
+      <view class="chev">›</view>
+    </view>
+
+    <view class="privacy">照片仅在本机处理，不上传。</view>
+  </view>
+  <privacy-popup />
+</view>

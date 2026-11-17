@@ -1,0 +1,65 @@
+.stat {
+  margin-top: 16rpx;
+  font-size: 28rpx;
+  color: #3e5960;
+}
+
+.stat.strong {
+  color: #0f5562;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.label {
+  margin-top: 28rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8rpx;
+}
+
+.chip {
+  height: 76rpx;
+  padding: 0 22rpx;
+  margin: 12rpx 12rpx 0 0;
+  border-radius: 16rpx;
+  background: #ffffff;
+  color: #14343c;
+  border: 2rpx solid #c5dbe0;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.chip.on {
+  background: #0f7384;
+  border-color: #0f7384;
+  color: #ffffff;
+}
+
+.custom-line {
+  display: flex;
+  align-items: center;
+  margin-top: 16rpx;
+}
+
+.unit {
+  margin-left: 16rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.custom-line .field {
+  flex: 1;
+}
+
+.dock-row {
+  display: flex;
+}
+
+.dock-row .btn {
+  flex: 1;
+}

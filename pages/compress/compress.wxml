@@ -1,0 +1,51 @@
+<view class="page">
+  <privacy-popup />
+  <canvas type="2d" id="workCanvas" class="work-canvas"></canvas>
+
+  <view wx:if="{{!src}}">
+    <view class="h1">把照片压到指定大小</view>
+    <view class="sub">选一张照片，设定多少 KB。手机会导出一张 JPEG，并尽量不超过这个大小。</view>
+    <button class="btn btn-primary" hover-class="btn-hover" bindtap="onCamera">拍照</button>
+    <button class="btn btn-ghost" hover-class="btn-hover" bindtap="onAlbum">从相册选择</button>
+    <view wx:if="{{error}}" class="warn">{{error}}</view>
+    <view class="privacy">照片仅在本机处理，不上传。</view>
+  </view>
+
+  <block wx:else>
+    <view class="preview-box">
+      <image class="preview" src="{{preview}}" mode="aspectFit" />
+    </view>
+    <view class="stat">原图 {{fromText}}<text wx:if="{{originPx}}"> · {{originPx}}</text></view>
+
+    <view class="label">目标大小</view>
+    <view class="chips">
+      <button
+        wx:for="{{presets}}"
+        wx:key="kb"
+        class="chip {{!usingCustom && targetKb === item.kb ? 'on' : ''}}"
+        data-kb="{{item.kb}}"
+        bindtap="onChip"
+      >{{item.label}}</button>
+      <button class="chip {{usingCustom ? 'on' : ''}}" bindtap="onCustomChip">自定义</button>
+    </view>
+
+    <view wx:if="{{usingCustom}}" class="custom-line">
+      <input class="field" type="number" placeholder="例如 80" value="{{customKb}}" bindinput="onCustomKb" />
+      <view class="unit">KB</view>
+    </view>
+    <view wx:if="{{targetError}}" class="warn">{{targetError}}</view>
+    <view wx:if="{{busy}}" class="note">{{busyText}}</view>
+    <view wx:if="{{note}}" class="note">{{note}}</view>
+    <view wx:if="{{done}}" class="stat strong">结果 {{resultText}}<text wx:if="{{resultPx}}"> · {{resultPx}}</text></view>
+
+    <button class="btn btn-primary" hover-class="btn-hover" bindtap="onCompress" disabled="{{busy}}">
+      {{done ? '按这个目标再压一次' : '开始压缩'}}
+    </button>
+    <button wx:if="{{skipped}}" class="btn btn-text" bindtap="onForce" disabled="{{busy}}">仍然重新压缩</button>
+    <button wx:if="{{done}}" class="btn btn-ghost" hover-class="btn-hover" bindtap="onUse" disabled="{{busy}}">预览并保存</button>
+    <view class="dock-row">
+      <button class="btn btn-text" bindtap="onCamera" disabled="{{busy}}">重拍</button>
+      <button class="btn btn-text" bindtap="onAlbum" disabled="{{busy}}">换一张</button>
+    </view>
+  </block>
+</view>

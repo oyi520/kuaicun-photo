@@ -1,0 +1,17 @@
+<view class="mask" wx:if="{{show}}" catchtouchmove="noop">
+  <view class="panel">
+    <view class="title">隐私保护提示</view>
+    <view class="body">快寸照片只会在你亲手选择时读取一张照片，并在你确认后保存到相册。处理都在这台手机上完成，照片不会上传。</view>
+    <button class="contract" open-type="openPrivacyContract">查看《隐私保护指引》</button>
+    <view class="actions">
+      <button class="choice ghost" bindtap="onDisagree">拒绝</button>
+      <button
+        id="agree-btn"
+        class="choice ok"
+        open-type="agreePrivacyAuthorization"
+        bindagreeprivacyauthorization="onAgree"
+        bindtap="onAgree"
+      >同意</button>
+    </view>
+  </view>
+</view>

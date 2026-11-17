@@ -1,0 +1,41 @@
+<view class="page">
+  <privacy-popup />
+  <view wx:if="{{missing}}" class="panel">
+    <view class="h1">没有可预览的照片</view>
+    <view class="sub">先从首页做一张，完成后再来保存。</view>
+    <button class="btn btn-primary" hover-class="btn-hover" bindtap="goHome">回到首页</button>
+  </view>
+
+  <block wx:else>
+    <view class="preview-box">
+      <image class="preview" src="{{path}}" mode="aspectFit" />
+    </view>
+    <view class="meta">
+      <view wx:if="{{sizeName}}" class="meta-name">{{sizeName}}</view>
+      <view wx:if="{{sizeText}}" class="meta-line">{{sizeText}}</view>
+      <view wx:if="{{bytesText}}" class="meta-line">文件 {{bytesText}}</view>
+      <view wx:if="{{bgColor}}" class="meta-line">底色 {{bgColor}}</view>
+    </view>
+    <view wx:if="{{fromText}}" class="compare">
+      <view class="compare-item">
+        <view class="compare-label">压缩前</view>
+        <view class="compare-value">{{fromText}}</view>
+      </view>
+      <view class="compare-arrow">→</view>
+      <view class="compare-item">
+        <view class="compare-label">压缩后</view>
+        <view class="compare-value">{{toText}}</view>
+      </view>
+    </view>
+    <view wx:if="{{dimensionNote}}" class="note">{{dimensionNote}}</view>
+    <view wx:if="{{overTarget}}" class="warn">这张仍略大于目标大小，可以回到压缩再试一次。</view>
+    <view wx:if="{{denied}}" class="warn">如果刚才拒绝了授权，请点下面的保存，再到设置里打开「保存到相册」。</view>
+
+    <button class="btn btn-primary" hover-class="btn-hover" bindtap="onSave">保存到相册</button>
+    <button class="btn btn-ghost" hover-class="btn-hover" bindtap="onRecolor">换一个底色</button>
+    <button class="btn btn-ghost" hover-class="btn-hover" bindtap="onCompress">压缩到指定大小</button>
+    <button class="btn btn-ghost" hover-class="btn-hover" bindtap="onResize">重新裁剪尺寸</button>
+    <button class="btn btn-text" bindtap="goHome">回到首页</button>
+    <view class="privacy">照片仅在本机处理，不上传。</view>
+  </block>
+</view>

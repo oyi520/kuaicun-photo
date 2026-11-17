@@ -1,0 +1,45 @@
+.meta {
+  margin-top: 20rpx;
+}
+
+.meta-name {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.meta-line {
+  margin-top: 6rpx;
+  color: #3e5960;
+  font-size: 28rpx;
+}
+
+.compare {
+  margin-top: 20rpx;
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+}
+
+.compare-item {
+  flex: 1;
+}
+
+.compare-label {
+  color: #5c747a;
+  font-size: 24rpx;
+}
+
+.compare-value {
+  margin-top: 6rpx;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.compare-arrow {
+  width: 64rpx;
+  text-align: center;
+  color: #0f7384;
+  font-size: 36rpx;
+}

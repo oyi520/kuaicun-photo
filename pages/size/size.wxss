@@ -1,0 +1,99 @@
+.lead {
+  color: #3e5960;
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.list {
+  background: #ffffff;
+  border-radius: 28rpx;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 28rpx;
+  border-bottom: 2rpx solid #e4eef0;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.row.on {
+  background: #e7f6f8;
+}
+
+.row-hover {
+  background: #f4fbfb;
+}
+
+.row-main {
+  flex: 1;
+}
+
+.row-name {
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.row-hint {
+  margin-top: 6rpx;
+  color: #5c747a;
+  font-size: 24rpx;
+}
+
+.mark {
+  color: #0f7384;
+  font-size: 26rpx;
+  font-weight: 600;
+  margin-left: 16rpx;
+  min-width: 64rpx;
+  text-align: right;
+}
+
+.custom {
+  margin-top: 24rpx;
+}
+
+.custom-title {
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.custom-hint {
+  margin-top: 8rpx;
+  color: #5c747a;
+  font-size: 26rpx;
+}
+
+.custom-fields {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 20rpx;
+}
+
+.field-wrap {
+  flex: 1;
+}
+
+.field-label {
+  font-size: 24rpx;
+  color: #5c747a;
+  margin-bottom: 8rpx;
+}
+
+.times {
+  width: 48rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: #5c747a;
+  padding-bottom: 18rpx;
+}
+
+.will {
+  margin-top: 28rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}

@@ -1,0 +1,22 @@
+{
+  "description": "项目私有配置，只放开发者工具的本地编译偏好。不要写入 AppSecret 或任何密钥。",
+  "projectname": "快寸照片工具",
+  "setting": {
+    "compileHotReLoad": true,
+    "urlCheck": true,
+    "coverView": true,
+    "lazyloadPlaceholderEnable": false,
+    "skylineRenderEnable": false,
+    "preloadBackgroundData": false,
+    "autoAudits": false,
+    "useApiHook": true,
+    "showShadowRootInWxmlPanel": true,
+    "useStaticServer": false,
+    "useLanDebug": false,
+    "showES6CompileOption": false,
+    "checkInvalidKey": true,
+    "ignoreDevUnusedFiles": true
+  },
+  "libVersion": "3.7.1",
+  "condition": {}
+}
